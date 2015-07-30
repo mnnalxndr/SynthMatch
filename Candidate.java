@@ -7,6 +7,7 @@ import com.jsyn.util.SampleLoader;
 import com.jsyn.util.WaveRecorder;
 
 import java.io.*;
+import java.nio.file.Files;
 
 /**
  * Created by alexmann on 29/07/2015.
@@ -56,7 +57,7 @@ public class Candidate {
         try{
             File candidateFile = new File("candidate.wav");
             WaveRecorder recorder = new WaveRecorder(synth, candidateFile, 1);
-            sawOsc.output.connect(0, recorder.getInput(), 0);
+            mixer.output.connect(0, recorder.getInput(), 0);
 
             lineOut.start();
             recorder.start();
@@ -73,6 +74,7 @@ public class Candidate {
             candidateSamples = new float[fileSamples.getNumFrames()];
             System.out.println("CandidateSmaples.length = " + candidateSamples.length);
             fileSamples.read(candidateSamples);
+            Files.delete(readFile.toPath());
 
 
             FileWriter write = new FileWriter("candidateOutput.txt", false);
