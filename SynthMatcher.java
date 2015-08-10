@@ -34,7 +34,7 @@ public class SynthMatcher extends Problem implements SimpleProblemForm {
 //                sum/(double)ind2.genome.length,
                 fitness,
                 ///... is the individual ideal?  Indicate here...
-                fitness < 1);
+                fitness < 2.5);
 //                sum == ind2.genome.length);
         ind2.evaluated = true;
     }

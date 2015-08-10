@@ -6,7 +6,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.*;
-//import SynthGen.*;
 
 /**
  * Created by alexmann on 06/07/2015.
@@ -14,7 +13,7 @@ import java.io.*;
 public class TargetImport extends Thread {
 
 
-    public static long getSoundLength(File targetFile) {
+    public static double getSoundLength(File targetFile) {
 
         AudioInputStream audioInputStream = null;
         try {
@@ -29,12 +28,12 @@ public class TargetImport extends Thread {
         System.out.println(audioFileLength);
         int frameSize = format.getFrameSize();
         float frameRate = format.getFrameRate();
-        float durationInSeconds = (float) Math.floor((audioFileLength / (frameSize * frameRate)));
+        double durationInSeconds = Math.floor((audioFileLength / (frameSize * frameRate)));
         long durationInMillieconds = (long) (1000 * durationInSeconds);
 
         System.out.println("Length = " + durationInSeconds);
 
-        return durationInMillieconds;
+        return durationInSeconds;
     }
 
     public static float[] getTargetSamples(File targetFile) {

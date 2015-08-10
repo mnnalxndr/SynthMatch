@@ -1,18 +1,15 @@
-
-
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * Created by alexmann on 28/07/2015.
  */
 public class Project {
 
-    public void comparisonMethod () {
+    public static void comparisonMethod () {
 
         double runningTotal = 0;
+        double[] array = new double[16];
+
 
         for (int i=0; i<705601; i++) {
 
@@ -32,8 +29,9 @@ public class Project {
                     i==617400 ||
                     i==661500 ||
                     i==705600) {
-                System.out.print("At " + i / 44100 + " seconds: " + Math.sqrt(runningTotal));
+                System.out.print("At " + i / 44100 + " seconds: " + (Math.sqrt(runningTotal)-420));
                 System.out.println("\t\t" + ((Math.log(((Math.sqrt((runningTotal)))/420)-1))/Math.log(4)));
+                array[(i/44100)-1] = Math.sqrt(runningTotal);
             }
             runningTotal += 4;
 
@@ -48,22 +46,25 @@ public class Project {
 
         System.out.println("Take 3!");
 
-        File targetFile = new File("440Hz-SAW.wav");
+        File targetFile = new File("440Hz-SAW-1000LP.wav");
 
-        lengthInMS = TargetImport.getSoundLength(targetFile);
+        lengthInS = TargetImport.getSoundLength(targetFile);
         targetSamples = TargetImport.getTargetSamples(targetFile);
 
         Candidate c = new Candidate();
 
-        candidateSamples = c.generateCandidate(500, 1.0);
+        candidateSamples = c.generateCandidate(550, 6);
+//
+//        double fitness = c.normaliseAndCompare(targetSamples, candidateSamples);
+//        System.out.println("Deviation value = " + fitness);
 
-        double fitness = c.normaliseAndCompare(targetSamples, candidateSamples);
+//        comparisonMethod();
 
-        System.out.println(fitness);
+        System.exit(0);
 
     }
 
-    public static long lengthInMS;
+    public static double lengthInS;
     public static float[] targetSamples = null;
     public static float[] candidateSamples = null;
 }
