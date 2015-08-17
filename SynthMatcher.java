@@ -23,7 +23,7 @@ public class SynthMatcher extends Problem implements SimpleProblemForm {
 
         DoubleVectorIndividual ind2 = (DoubleVectorIndividual)ind;
 
-        float[] candidateSamples = Candidate.generateCandidate(ind2.genome[0], ind2.genome[1]);
+        float[] candidateSamples = Project.candidateSamples;
         double fitness = Candidate.normaliseAndCompare(Project.targetSamples, candidateSamples);
 
         if (!(ind2.fitness instanceof SimpleFitness))

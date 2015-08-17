@@ -41,7 +41,7 @@ public class TargetImport extends Thread {
 //            File file = new File("440Hz-SAW.wav");
             FloatSample fileSamples = SampleLoader.loadFloatSample(targetFile);
             targetSamples = new float[fileSamples.getNumFrames()];
-            fileSamples.read(1, targetSamples, 0, targetSamples.length-1);
+            fileSamples.read(targetSamples);
 
 
             FileWriter write = new FileWriter("targetOutput.txt", false);
